@@ -6,7 +6,7 @@
 An unofficial Flutter plugin that wraps [pusher-websocket-java](https://github.com/pusher/pusher-websocket-java) on Android and [pusher-websocket-swift](https://github.com/pusher/pusher-websocket-swift) on iOS.
 This is a continued plugin for [Flutter Pusher Client](https://github.com/heywhy/flutter-pusher-client)
 
-This package lets you consume events from a Pusher server. In order to use this library, you need to have a free account on <http://pusher.com>. After registering, you will need the application credentials for your app.
+This package lets you consume events from a Pusher server. In order to use this library, you need to have a free account on <https://pusher.com>. After registering, you will need the application credentials for your app.
 **NOTE** This package requires ``json_annotation : ^4.0.0``
 
 # How to install
