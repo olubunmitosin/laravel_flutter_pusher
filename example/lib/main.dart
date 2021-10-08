@@ -23,17 +23,12 @@ class _MyAppState extends State<MyApp> {
     setUpServices();
   }
 
-
-  void setUpServices()
-  {
+  void setUpServices() {
     var options = PusherOptions(
-        host: '10.0.2.2',
-        port: 6001,
-        encrypted: false,
-        cluster: 'eu'
-    );
+        host: '10.0.2.2', port: 6001, encrypted: false, cluster: 'eu');
 
-    LaravelFlutterPusher pusher = LaravelFlutterPusher('app_key', options, enableLogging: true);
+    LaravelFlutterPusher pusher =
+        LaravelFlutterPusher('app_key', options, enableLogging: true);
     pusher
         .subscribe('channel')
         .bind('event', (event) => log('event =>' + event.toString()));

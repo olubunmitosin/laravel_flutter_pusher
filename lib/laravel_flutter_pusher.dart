@@ -26,15 +26,17 @@ class Channel {
   final LaravelFlutterPusher pusher;
   MethodChannel? _channel;
 
-  Channel({required this.name, required this.pusher, required MethodChannel channel}) {
+  Channel(
+      {required this.name,
+      required this.pusher,
+      required MethodChannel channel}) {
     _channel = channel;
     _subscribe();
   }
 
   void _subscribe() async {
     var args = jsonEncode(
-        BindArgs(instanceId: pusher._instanceId, channelName: name)
-            .toJson());
+        BindArgs(instanceId: pusher._instanceId, channelName: name).toJson());
     await _channel!.invokeMethod('subscribe', args);
   }
 
@@ -61,8 +63,10 @@ class Channel {
 }
 
 class LaravelFlutterPusher {
-  static const MethodChannel _channel = MethodChannel('com.github.olubunmitosin/pusher');
-  final EventChannel _eventChannel = const EventChannel('com.github.olubunmitosin/pusherStream');
+  static const MethodChannel _channel =
+      MethodChannel('com.github.olubunmitosin/pusher');
+  final EventChannel _eventChannel =
+      const EventChannel('com.github.olubunmitosin/pusherStream');
   static int _instances = 0;
 
   int _instanceId = 0;
@@ -72,13 +76,13 @@ class LaravelFlutterPusher {
   void Function(ConnectionStateChange)? _onConnectionStateChange;
 
   LaravelFlutterPusher(
-      String appKey,
-      PusherOptions options, {
-        bool lazyConnect = false,
-        bool enableLogging = false,
-        void Function(ConnectionError)? onError,
-        void Function(ConnectionStateChange)? onConnectionStateChange,
-      }) {
+    String appKey,
+    PusherOptions options, {
+    bool lazyConnect = false,
+    bool enableLogging = false,
+    void Function(ConnectionError)? onError,
+    void Function(ConnectionStateChange)? onConnectionStateChange,
+  }) {
     _instanceId = _instances++;
     _onError = onError;
     _onConnectionStateChange = onConnectionStateChange;
@@ -94,7 +98,8 @@ class LaravelFlutterPusher {
     void Function(ConnectionStateChange)? onConnectionStateChange,
     void Function(ConnectionError)? onError,
   }) async {
-    _onConnectionStateChange = onConnectionStateChange ?? _onConnectionStateChange;
+    _onConnectionStateChange =
+        onConnectionStateChange ?? _onConnectionStateChange;
     _onError = onError ?? _onError;
 
     await _channel.invokeMethod(
@@ -123,7 +128,8 @@ class LaravelFlutterPusher {
     return _socketId;
   }
 
-  void _init(String appKey, PusherOptions options, {required bool enableLogging}) async {
+  void _init(String appKey, PusherOptions options,
+      {required bool enableLogging}) async {
     _eventChannel.receiveBroadcastStream().listen(_handleEvent);
 
     final initArgs = jsonEncode(InitArgs(
@@ -145,7 +151,7 @@ class LaravelFlutterPusher {
 
     if (message.isEvent) {
       var callback =
-      _eventCallbacks[message.event!.channel + message.event!.event];
+          _eventCallbacks[message.event!.channel + message.event!.event];
       if (callback != null) {
         callback(jsonDecode(message.event!.data));
       }
@@ -163,10 +169,10 @@ class LaravelFlutterPusher {
   }
 
   Future _bind(
-      String channelName,
-      String eventName, {
-        required Function onEvent,
-      }) async {
+    String channelName,
+    String eventName, {
+    required Function onEvent,
+  }) async {
     final bindArgs = jsonEncode(BindArgs(
       instanceId: _instanceId,
       channelName: channelName,
@@ -201,20 +207,20 @@ class LaravelFlutterPusher {
 
 class PusherClient extends LaravelFlutterPusher {
   PusherClient(
-      String appKey,
-      PusherOptions options, {
-        bool lazyConnect = false,
-        bool enableLogging = false,
-        void Function(ConnectionError)? onError,
-        void Function(ConnectionStateChange)? onConnectionStateChange,
-      }) : super(
-    appKey,
-    options,
-    onError: onError,
-    lazyConnect: lazyConnect,
-    enableLogging: enableLogging,
-    onConnectionStateChange: onConnectionStateChange,
-  );
+    String appKey,
+    PusherOptions options, {
+    bool lazyConnect = false,
+    bool enableLogging = false,
+    void Function(ConnectionError)? onError,
+    void Function(ConnectionStateChange)? onConnectionStateChange,
+  }) : super(
+          appKey,
+          options,
+          onError: onError,
+          lazyConnect: lazyConnect,
+          enableLogging: enableLogging,
+          onConnectionStateChange: onConnectionStateChange,
+        );
 }
 
 @JsonSerializable()
@@ -223,8 +229,10 @@ class BindArgs {
   final String channelName;
   String? eventName;
 
-  BindArgs({required this.channelName, this.eventName, required this.instanceId});
-  factory BindArgs.fromJson(Map<String, dynamic> json) => _$BindArgsFromJson(json);
+  BindArgs(
+      {required this.channelName, this.eventName, required this.instanceId});
+  factory BindArgs.fromJson(Map<String, dynamic> json) =>
+      _$BindArgsFromJson(json);
   Map<String, dynamic> toJson() => _$BindArgsToJson(this);
 }
 
@@ -274,9 +282,9 @@ class PusherAuth {
   final Map<String, String> headers;
 
   PusherAuth(
-      this.endpoint, {
-        this.headers = const {'Content-Type': 'application/x-www-form-urlencoded'},
-      });
+    this.endpoint, {
+    this.headers = const {'Content-Type': 'application/x-www-form-urlencoded'},
+  });
 
   factory PusherAuth.fromJson(Map<String, dynamic> json) =>
       _$PusherAuthFromJson(json);
@@ -299,9 +307,9 @@ class PusherEventStreamMessage {
 
   PusherEventStreamMessage(
       {this.event,
-        required this.instanceId,
-        this.connectionStateChange,
-        this.connectionError});
+      required this.instanceId,
+      this.connectionStateChange,
+      this.connectionError});
 
   factory PusherEventStreamMessage.fromJson(Map<String, dynamic> json) =>
       _$PusherEventStreamMessageFromJson(json);
@@ -327,7 +335,8 @@ class ConnectionStateChange {
   final String currentState;
   final String previousState;
 
-  ConnectionStateChange({required this.currentState, required this.previousState});
+  ConnectionStateChange(
+      {required this.currentState, required this.previousState});
 
   factory ConnectionStateChange.fromJson(Map<String, dynamic> json) =>
       _$ConnectionStateChangeFromJson(json);
@@ -341,7 +350,8 @@ class ConnectionError {
   final String code;
   final String exception;
 
-  ConnectionError({required this.message, required this.code, required this.exception});
+  ConnectionError(
+      {required this.message, required this.code, required this.exception});
 
   factory ConnectionError.fromJson(Map<String, dynamic> json) =>
       _$ConnectionErrorFromJson(json);
