@@ -13,10 +13,10 @@ This package lets you consume events from a Pusher server. In order to use this 
 * Add to your pubspec.yaml
 ```
 dependencies:
-  laravel_flutter_pusher: ^0.0.1
+  laravel_flutter_pusher: ^0.0.4
 ```
-<!-- * In `/ios/Podfile`, set global platform to at least 9.0
-`platform :ios, '9.0'`
+<!-- * In `/ios/Podfile`, set global platform to at least 10.0
+`platform :ios, '10.0'`
 
 ### For iOS Objective-C based Flutter apps
 It is currently a bit difficult to get some Swift based Flutter plugins working in an Objective-C based Flutter app. See [here for info](https://github.com/flutter/flutter/issues/25676) and [here for a way to fix](https://github.com/fayeed/flutter_freshchat/issues/9#issuecomment-514329934).
