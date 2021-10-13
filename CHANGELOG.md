@@ -1,3 +1,8 @@
+## 0.0.4
+
+* Resolved upgrade issues
+* Improved performance
+
 ## 0.0.3
 
 * Added IOS support
