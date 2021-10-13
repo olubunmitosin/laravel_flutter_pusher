@@ -1,0 +1,41 @@
+PODS:
+  - CryptoSwift (0.15.0)
+  - Flutter (1.0.0)
+  - laravel_flutter_pusher (0.0.1):
+    - Flutter
+    - PusherSwift (~> 7.2)
+  - PusherSwift (7.2.0):
+    - CryptoSwift (~> 0.9)
+    - ReachabilitySwift (= 4.3.0)
+    - Starscream (~> 3.0.5)
+  - ReachabilitySwift (4.3.0)
+  - Starscream (3.0.6)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - laravel_flutter_pusher (from `.symlinks/plugins/laravel_flutter_pusher/ios`)
+
+SPEC REPOS:
+  trunk:
+    - CryptoSwift
+    - PusherSwift
+    - ReachabilitySwift
+    - Starscream
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  laravel_flutter_pusher:
+    :path: ".symlinks/plugins/laravel_flutter_pusher/ios"
+
+SPEC CHECKSUMS:
+  CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  laravel_flutter_pusher: 71648b712553adc91493dfcb22020294c3dc9dbf
+  PusherSwift: a5369a01e8a9106b4897e9186265af1426726062
+  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1
