@@ -139,8 +139,8 @@ Map<String, dynamic> _$ConnectionStateChangeToJson(
 ConnectionError _$ConnectionErrorFromJson(Map<String, dynamic> json) {
   return ConnectionError(
     message: json['message'] as String,
-    code: json['code'] as String,
-    exception: json['exception'] as String,
+    code: json['code'] as String?,
+    exception: json['exception'] as String?,
   );
 }
 
